@@ -11,6 +11,7 @@ export const newFile = async (uri: Uri) => {
 
     let directory;
     const hasDirectory = uri?.fsPath || lstatSync(uri?.path).isDirectory();
+    //TODO IMPROVE BAD CODE
     if (!hasDirectory) {
         directory = await promptForTargetDirectory();
         if (!directory) {
