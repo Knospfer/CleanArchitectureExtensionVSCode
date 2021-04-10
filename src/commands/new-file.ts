@@ -1,5 +1,5 @@
 import * as mkdirp from "mkdirp";
-import { lstatSync } from "node:fs";
+import { existsSync, lstatSync, writeFile } from "fs";
 import { InputBoxOptions, OpenDialogOptions, Uri, window } from "vscode";
 
 export const newFile = async (uri: Uri) => {
@@ -10,7 +10,10 @@ export const newFile = async (uri: Uri) => {
     }
 
     let directory;
-    const hasDirectory = uri?.fsPath || lstatSync(uri?.path).isDirectory();
+    let hasDirectory;
+    if (!!uri) {
+        hasDirectory = !!uri?.fsPath || lstatSync(uri?.path).isDirectory();
+    }
     //TODO IMPROVE BAD CODE
     if (!hasDirectory) {
         directory = await promptForTargetDirectory();
@@ -22,7 +25,13 @@ export const newFile = async (uri: Uri) => {
         directory = uri.fsPath;
     }
 
-    //TODO GENERATE FILE
+    try {
+        await generateFileCode({ fileName, directory });
+        window.showInformationMessage(`Successfully generated ${fileName} code!`);
+    } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : JSON.stringify(error);
+        window.showWarningMessage(errorMessage);
+    }
 };
 
 //returns a promise
@@ -51,3 +60,54 @@ async function promptForTargetDirectory() {
 
 //TODO GENERATE CODE
 
+function getFileTemplate(filename: string) {
+
+    return `
+        class ${filename.toUpperCase()} {
+            hi(){
+                console.log("hi! i'm your file!");
+            }
+        }
+    `;
+}
+
+async function generateFileCode(args: { fileName: string, directory: string }) {
+    const { fileName, directory } = args;
+    const directoryPath = `${directory}/${fileName}.ts`;
+
+    if (!existsSync(directoryPath)) {
+        await createDirectory(directoryPath);
+    }
+
+    await createFileTemplate({ filename: fileName, directory: directoryPath });
+}
+
+async function createDirectory(directory: string): Promise<void> {
+    try {
+        await mkdirp(directory);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function createFileTemplate(args: { filename: string, directory: string }): Promise<void> {
+    const { filename, directory } = args;
+
+    const finalPath = `${directory}/${filename}.ts`;
+
+    if (existsSync(finalPath)) {
+        throw Error(`${directory}/${filename}.ts alread exists!`);
+    }
+
+    const code = await generateFileCode({ fileName: filename, directory: directory });
+
+    return new Promise((resolve, reject) => {
+        writeFile(finalPath, code, (error) => {
+            if (!!error) {
+                reject(error);
+                return;
+            }
+            resolve();
+        });
+    });
+}
