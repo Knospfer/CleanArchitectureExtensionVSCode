@@ -30,7 +30,7 @@ export const newFile = async (uri: Uri) => {
         window.showInformationMessage(`Successfully generated ${fileName} code!`);
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : JSON.stringify(error);
-        window.showWarningMessage(errorMessage);
+        window.showErrorMessage(errorMessage);
     }
 };
 
@@ -58,8 +58,6 @@ async function promptForTargetDirectory() {
     return null;
 }
 
-//TODO GENERATE CODE
-
 function getFileTemplate(filename: string) {
 
     return `
@@ -73,7 +71,7 @@ function getFileTemplate(filename: string) {
 
 async function generateFileCode(args: { fileName: string, directory: string }) {
     const { fileName, directory } = args;
-    const directoryPath = `${directory}/${fileName}.ts`;
+    const directoryPath = `${directory}/${fileName}`;
 
     if (!existsSync(directoryPath)) {
         await createDirectory(directoryPath);
@@ -99,7 +97,7 @@ async function createFileTemplate(args: { filename: string, directory: string })
         throw Error(`${directory}/${filename}.ts alread exists!`);
     }
 
-    const code = await generateFileCode({ fileName: filename, directory: directory });
+    const code = await getFileTemplate(filename);
 
     return new Promise((resolve, reject) => {
         writeFile(finalPath, code, (error) => {

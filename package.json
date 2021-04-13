@@ -10,16 +10,24 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:cleanarchitectureflutter.helloWorld"
+		"onCommand:cleanarchitectureflutter.createsnippet"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "cleanarchitectureflutter.helloWorld",
-				"title": "Hello World"
+				"command": "cleanarchitectureflutter.createsnippet",
+				"title": "Clean Architecture: New Snippet"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "cleanarchitectureflutter.createsnippet",
+					"title": "New Snippet"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
