@@ -12,10 +12,6 @@ export function promptForFileName(): Thenable<string | undefined> {
 
 export async function assignDirectoryFromExplorer() {
     let directory = await promptForTargetDirectory();
-    if (!directory) {
-        window.showErrorMessage("Error: select a valid directory");
-        return "";
-    }
     return directory;
 }
 
@@ -39,5 +35,6 @@ export async function createDirectory(directory: string): Promise<void> {
         await mkdirp(directory);
     } catch (error) {
         showCatchedErrorMessage(error);
+        throw error;
     }
 }

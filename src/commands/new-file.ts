@@ -2,6 +2,7 @@ import { lstatSync } from "fs";
 import { Uri, window } from "vscode";
 import { assignDirectoryFromExplorer, promptForFileName } from "../functions/folder-related";
 import { generateFileCode } from "../functions/code-creation-related";
+import { showCatchedErrorMessage } from "../functions/utils";
 
 export const newFile = async (uri: Uri) => {
     const fileName = await promptForFileName();
@@ -19,14 +20,17 @@ export const newFile = async (uri: Uri) => {
     !!hasDirectory ? directory = uri.fsPath :
         directory = await assignDirectoryFromExplorer();
 
-    if (!directory) { return; }
+    if (!directory) {
+        window.showErrorMessage("Error: select a valid directory");
+        return;
+    }
 
     try {
         await generateFileCode({ fileName, directory });
         window.showInformationMessage(`Successfully generated ${fileName} code!`);
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : JSON.stringify(error);
-        window.showErrorMessage(errorMessage);
+        showCatchedErrorMessage(error);
+        throw error;
     }
 };
 
