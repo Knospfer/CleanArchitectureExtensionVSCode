@@ -1,13 +1,15 @@
-import mkdirp = require("mkdirp");
 import { InputBoxOptions, OpenDialogOptions, window } from "vscode";
-import { showCatchedErrorMessage } from "./utils";
 
-export function promptForFileName(): Thenable<string | undefined> {
+export async function promptForFileName(): Promise<string> {
     const alertOptions: InputBoxOptions = {
         prompt: "File Name",
         placeHolder: "my-file"
     };
-    return window.showInputBox(alertOptions);
+    const fileName = await window.showInputBox(alertOptions);
+    if(!!fileName){
+        return fileName;
+    }
+    throw new Error("Error: file name is missing");
 }
 
 export async function assignDirectoryFromExplorer() {
@@ -27,14 +29,5 @@ export async function promptForTargetDirectory(): Promise<string> {
     if (!!uri) {
         return uri[0].path;
     }
-    return "";
-}
-
-export async function createDirectory(directory: string): Promise<void> {
-    try {
-        await mkdirp(directory);
-    } catch (error) {
-        showCatchedErrorMessage(error);
-        throw error;
-    }
+    throw new Error("Error: select a valid directory");
 }
