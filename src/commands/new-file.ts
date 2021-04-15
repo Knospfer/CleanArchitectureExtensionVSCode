@@ -18,7 +18,7 @@ export const newFile = async (uri: Uri) => {
             directory = await assignDirectoryFromExplorer();
 
         await generateFileCode({ fileName, directory });
-        window.showInformationMessage(`Successfully generated ${fileName} code!`);
+        window.showInformationMessage(`Code generated uccessfully!`);
     } catch (error) {
         showCatchedErrorMessage(error);
         throw error;
