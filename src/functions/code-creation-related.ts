@@ -6,7 +6,7 @@ export async function generateFileCode(args: { fileName: string, directory: stri
     const directoryPath = `${directory}/${fileName}`;
 
     if (!existsSync(directoryPath)) {
-        createDirectory(directoryPath);
+       await createDirectory(directoryPath);
     }
     await createFileTemplate({ filename: fileName, directory: directoryPath });
 }
@@ -15,7 +15,7 @@ async function createDirectory(directory: string): Promise<void> {
     await mkdirp(directory);
 }
 
-async function createFileTemplate(args: { filename: string, directory: string }): Promise<void> {
+function createFileTemplate(args: { filename: string, directory: string }): Promise<void> {
     const { filename, directory } = args;
 
     const finalPath = `${directory}/${filename}.ts`;
@@ -24,12 +24,12 @@ async function createFileTemplate(args: { filename: string, directory: string })
         throw Error(`${directory}/${filename}.ts alread exists!`);
     }
 
-    const code = await getFileTemplate(filename);
+    const code = getFileTemplate(filename);
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         writeFile(finalPath, code, (error) => {
             if (!!error) {
-                throw new Error(error.message);
+                reject(error.message);
             }
             resolve();
         });
