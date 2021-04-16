@@ -3,6 +3,7 @@ import { Uri, window } from "vscode";
 import { assignDirectoryFromExplorer, promptForFileName } from "../functions/prompt-related";
 import { generateFileCode } from "../functions/code-creation-related";
 import { showCatchedErrorMessage } from "../functions/utils";
+import { CodeGenerator, FeatureTreeMaker } from "../classes/feature-tree-maker";
 
 export const newFile = async (uri: Uri) => {
     try {
@@ -17,7 +18,9 @@ export const newFile = async (uri: Uri) => {
         !!hasDirectory ? directory = uri.fsPath :
             directory = await assignDirectoryFromExplorer();
 
-        await generateFileCode({ fileName, directory });
+        const treeMaker: CodeGenerator = new FeatureTreeMaker({ fileName: fileName, directory: directory });
+        await treeMaker.generateStrucureCode();
+
         window.showInformationMessage(`Code generated uccessfully!`);
     } catch (error) {
         showCatchedErrorMessage(error);
