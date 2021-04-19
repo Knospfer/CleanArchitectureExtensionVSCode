@@ -18,14 +18,19 @@ export class FeatureTreeMaker implements CodeGenerator {
 
     async generateStrucureCode(): Promise<void> {
         await Promise.all([
-            this.generateFileCode(this.fileName, this.directory, "features", this.fileName, "data", "data_source",),
-            this.generateFileCode(this.fileName, this.directory, "features", this.fileName, "data", "repository_concrete")
+            this.generateFileCode(this.fileName, false, this.directory, "features", this.fileName, "data", "data_source",),
+            this.generateFileCode(this.fileName, false, this.directory, "features", this.fileName, "data", "repository_concrete"),
+            this.generateFileCode(this.fileName, true, this.directory, "features", this.fileName, "presentation", "bloc", this.fileName, "bloc")
         ]);
     }
 
-    private async generateFileCode(fileName: string, ...directories: string[]) {
+    private async generateFileCode(fileName: string, skipSuffix: boolean = false, ...directories: string[]) {
 
         const suffix = directories[directories.length - 1];
+
+        if (skipSuffix) {
+            directories.pop();
+        }
 
         const directoryPath = directories.reduce((prev, current) => {
             if (!!prev) {
@@ -37,17 +42,17 @@ export class FeatureTreeMaker implements CodeGenerator {
         if (!existsSync(directoryPath)) {
             await this.createDirectory(directoryPath);
         }
-        await this.createFileTemplate({ fileName: fileName, directory: directoryPath, suffix: suffix});
+        await this.createFileTemplate({ fileName: fileName, directory: directoryPath, suffix: suffix });
     }
 
     private async createDirectory(directory: string): Promise<void> {
         await mkdirp(directory);
     }
 
-    private async createFileTemplate(args: { fileName: string, directory: string , suffix: string}): Promise<void> {
+    private async createFileTemplate(args: { fileName: string, directory: string, suffix: string }): Promise<void> {
         const { fileName, directory, suffix } = args;
 
-        const snakeCasefileName =  `${toSnakeCase(fileName)}_${suffix}`;
+        const snakeCasefileName = `${toSnakeCase(fileName)}_${suffix}`;
 
         const finalPath = `${directory}/${snakeCasefileName}.dart`;
 
