@@ -1,4 +1,4 @@
-import { window } from "vscode";
+import { InputBoxOptions, window } from "vscode";
 
 export function showCatchedErrorMessage(error: Error | Object | string) {
     let message: string = error instanceof Error ? error.message : JSON.stringify(error);
@@ -15,4 +15,16 @@ export function toPascalCase(fileName: string): string {
 
 export function toSnakeCase(name: string): string {
     return name.toLowerCase().replace(/[_-\s]/g, "_");
+}
+
+export async function promptForFileName(): Promise<string> {
+    const alertOptions: InputBoxOptions = {
+        prompt: "File Name",
+        placeHolder: "my-file"
+    };
+    const fileName = await window.showInputBox(alertOptions);
+    if (!!fileName) {
+        return fileName;
+    }
+    throw new Error("Error: file name is missing");
 }
