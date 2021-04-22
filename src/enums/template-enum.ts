@@ -1,3 +1,9 @@
 export enum TemplateEnum {
-    remoteDataSource
+    remoteDataSource,
+    repositoryConcrete,
+    repository,
+    useCase,
+    blocBloc,
+    blocEvent,
+    blocState,
 }
