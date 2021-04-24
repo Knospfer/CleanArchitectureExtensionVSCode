@@ -1,15 +1,18 @@
-export function remoteDataSourceTemplate(fileName: string) {
-    return `import 'package:injectable/injectable.dart';
+import { toPascalCase, toSnakeCaseFiltered } from "../utils/utils";
 
-        abstract class ${fileName}RemoteDataSource {
-          //  TODO DECLARE METHOD
-        }
-        
-        @LazySingleton(as: ${fileName}RemoteDataSource)
-        class ${fileName}RemoteDataSourceConcrete
-            implements ${fileName}RemoteDataSource {
-          const ${fileName}RemoteDataSourceConcrete();
-        
-          //  TODO IMPLEMENT METHOD
-        }`;
+export function remoteDataSourceTemplate(fileName: string) {
+  const snakeCaseFileName = toSnakeCaseFiltered(fileName, "remote", "data", "source");
+  const pascalCaseFileName = toPascalCase(fileName);
+  return `part of '../../${snakeCaseFileName}_imports.dart';
+  
+abstract class ${pascalCaseFileName} {
+   //  TODO DECLARE METHOD
+}
+  
+@LazySingleton(as: ${pascalCaseFileName})
+class ${pascalCaseFileName}Concrete implements ${pascalCaseFileName} {
+  const ${pascalCaseFileName}Concrete();
+  
+  //  TODO IMPLEMENT METHOD
+}`;
 }
