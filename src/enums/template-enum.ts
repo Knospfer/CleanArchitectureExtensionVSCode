@@ -6,4 +6,5 @@ export enum TemplateEnum {
     blocBloc,
     blocEvent,
     blocState,
+    imports,
 }
