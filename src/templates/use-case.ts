@@ -1,24 +1,26 @@
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+
 export function useCase(fileName: string) {
-    return `import 'package:event_app/core/errors/failures.dart';
-    import 'package:dartz/dartz.dart';
-    import 'package:event_app/core/use_cases/use_case.dart';
-    import 'package:injectable/injectable.dart';
+  const pascalCaseFileName = toPascalCaseFiltered(fileName, "use", "case", "imports");
+  const snakeCaseFileName = toSnakeCaseFiltered(fileName, "use", "case", "imports");
+
+  return `part of "../../${snakeCaseFileName}_imports.dart";
     
-    class ${fileName}Params {
-      final EventModel data;
+class ${pascalCaseFileName}Params {
+  final TO_IMPLEMET data;
     
-      ${fileName}Params(this.data);
-    }
+  ${pascalCaseFileName}Params(this.data);
+}
     
-    @lazySingleton
-    class ${fileName}UseCase implements UseCase<TO_IMPLEMENT, ${fileName}Params> {
-      final ${fileName}Repositoy repositoy;
+@lazySingleton
+class ${pascalCaseFileName}UseCase implements UseCase<TO_IMPLEMENT, ${pascalCaseFileName}Params> {
+  final ${pascalCaseFileName}Repositoy repositoy;
     
-      ${fileName}UseCase(this.repositoy);
+  ${pascalCaseFileName}UseCase(this.repositoy);
     
-      @override
-      Future<Either<Failure, TO_IMPLEMENT>> call(${fileName}Params params) async {
-        return await repositoy.METHOD(params.data);
-      }
-    }`;
+  @override
+  Future<Either<Failure, TO_IMPLEMENT>> call(${fileName}Params params) async {
+    return await repositoy.METHOD(params.data);
+  }
+}`;
 }

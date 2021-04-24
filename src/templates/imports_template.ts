@@ -6,5 +6,6 @@ export function imports(fileName: string) {
 import 'package:injectable/injectable.dart';
 part "./data/data_source/${snakeCaseFileName}_remote_data_source.dart";
 part "./data/repository_concrete/${snakeCaseFileName}_repository_concrete.dart";
-part "./domain/repository/${snakeCaseFileName}_repository.dart";`;
+part "./domain/repository/${snakeCaseFileName}_repository.dart";
+part "./domain/use_case/${snakeCaseFileName}_use_case.dart";`;
 }
