@@ -28,3 +28,14 @@ export async function promptForFileName(): Promise<string> {
     }
     throw new Error("Error: file name is missing");
 }
+
+export function toSnakeCaseFiltered(name: string, ...wordsToFilter: string[]): string {
+    return name.split(/[_-\s]/g)
+        .filter(w => !wordsToFilter.find(f => f === w))
+        .reduce((prev, current) => {
+            if (!prev) {
+                return current.toLowerCase();
+            }
+            return `${prev}_${current}`.toLowerCase();
+        }, "");
+}
