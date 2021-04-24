@@ -39,3 +39,15 @@ export function toSnakeCaseFiltered(name: string, ...wordsToFilter: string[]): s
             return `${prev}_${current}`.toLowerCase();
         }, "");
 }
+
+export function toPascalCaseFiltered(name: string, ...wordsToFilter: string[]): string {
+    const filteredName = name.split(/[_-\s]/g)
+        .filter(w => !wordsToFilter.find(f => f === w))
+        .reduce((prev, current) => {
+            if (!prev) {
+                return current.toLowerCase();
+            }
+            return `${prev}_${current}`.toLowerCase();
+        }, "");
+    return toPascalCase(filteredName);
+}
