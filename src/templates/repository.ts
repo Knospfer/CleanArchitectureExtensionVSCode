@@ -1,9 +1,12 @@
-export function repository(filename: String) {
-    return `import 'package:dartz/dartz.dart';
-    import 'package:event_app/core/errors/failures.dart';
-    import 'package:event_app/core/models/event_model.dart';
-    
-    abstract class ${filename}Repositoy {
-      Future<Either<Failure, TO_IMPLEMENT>> METHOD_NAME();
-    } `;
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+
+export function repository(fileName: string) {
+  const pascalCaseFileName = toPascalCaseFiltered(fileName, "repository", "imports");
+  const snakeCaseFileName = toSnakeCaseFiltered(fileName, "repository", "imports");
+
+  return `part of "../../${snakeCaseFileName}_imports.dart";
+
+abstract class ${pascalCaseFileName}Repository {
+  Future<Either<Failure, TO_IMPLEMENT>> METHOD_NAME();
+} `;
 }
