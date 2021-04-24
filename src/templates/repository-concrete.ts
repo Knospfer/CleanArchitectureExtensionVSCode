@@ -1,16 +1,19 @@
-export function repositoryConcrete(fileName: string) { 
-    return `import 'package:dartz/dartz.dart';
-    import 'package:injectable/injectable.dart';
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+
+export function repositoryConcrete(fileName: string) {
+  const snakeCaseFileName = toSnakeCaseFiltered(fileName, "repository", "concrete");
+  const pascalCaseFileName = toPascalCaseFiltered(fileName, "repository", "concrete", "imports");
+  return `part of '../../${snakeCaseFileName}_imports.dart';
+
+@LazySingleton(as: ${pascalCaseFileName}Repository)
+class ${pascalCaseFileName}RepositoryConcrete implements ${pascalCaseFileName}Repository {
+  final ${pascalCaseFileName}RemoteDataSource dataSource;
     
-    @LazySingleton(as: ${fileName}Repositoy)
-    class ${fileName}RepositoryConcrete implements ${fileName}Repositoy {
-      final ${fileName}LocalDataSource dataSource;
+  ${pascalCaseFileName}RepositoryConcrete(this.dataSource);
     
-      ${fileName}RepositoryConcrete(this.dataSource);
-    
-      @override
-      Future<Either<Failure, TO_IMPLEMENT>> METHOD_NAME() async {
-        //  TODO IMPLEMENT METHOD
-      }
-    }`;
+  @override
+  Future<Either<Failure, TO_IMPLEMENT>> METHOD_NAME() async {
+    //  TODO IMPLEMENT METHOD
+  }
+}`;
 }
