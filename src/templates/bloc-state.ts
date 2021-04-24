@@ -1,13 +1,18 @@
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+
 export function blocState(fileName: string) {
-    return `abstract class AddEventState {
-      const AddEventState();
-    }
+  const snakeCaseFileName = toSnakeCaseFiltered(fileName, "bloc", "state", "imports");
+  const pascalCaseFileName = toPascalCaseFiltered(fileName, "bloc", "state", "imports");
+    return `part of '../../../${snakeCaseFileName}_imports.dart';
+  abstract class ${pascalCaseFileName}State {
+    const ${pascalCaseFileName}State();
+  }
     
-    class AddEventInitial extends AddEventState {}
+  class ${pascalCaseFileName}Initial extends ${pascalCaseFileName}State {}
     
-    class AddEventLoading extends AddEventState {}
+  class ${pascalCaseFileName}Loading extends ${pascalCaseFileName}State {}
     
-    class AddEventLoaded extends AddEventState {}
+  class ${pascalCaseFileName}Loaded extends ${pascalCaseFileName}State {}
     
-    class AddEventError extends AddEventState {}`;
+  class ${pascalCaseFileName}Error extends ${pascalCaseFileName}State {}`;
 }
