@@ -1,6 +1,6 @@
 import { Uri, window } from "vscode";
 import { promptForFileName, showCatchedErrorMessage } from "../utils/utils";
-import { CleanArchitectureCodeGenerator } from "../classes/tree-creator-layer/clean-architecture-code-generator";
+import { CleanArchitectureCodeGenerator } from "../features/code-generation/tree-creator-layer/clean-architecture-code-generator";
 
 export interface NewFileDispatcher {
     newFile(uri: Uri): void;

@@ -1,5 +1,5 @@
-import { TemplateEnum } from "../../enums/template-enum";
-import { toSnakeCase } from "../../utils/utils";
+import { TemplateEnum } from "../../../enums/template-enum";
+import { toSnakeCase } from "../../../utils/utils";
 import { CodeFileCreator } from "../code-creation-layer/code-file-creator";
 import { DirectoryChecker } from "../code-creation-layer/directory-checker";
 import { TemplateCreator } from "../code-creation-layer/template-creator";

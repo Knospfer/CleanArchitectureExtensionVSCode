@@ -1,4 +1,4 @@
-import { toSnakeCase } from "../../utils/utils";
+import { toSnakeCase } from "../../../utils/utils";
 import { DirectoryChecker } from "../code-creation-layer/directory-checker";
 import { DirectoryCreator } from "../code-creation-layer/directory-creator";
 

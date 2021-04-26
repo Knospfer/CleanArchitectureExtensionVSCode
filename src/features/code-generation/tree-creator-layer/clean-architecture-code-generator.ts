@@ -1,4 +1,4 @@
-import { TemplateEnum } from "../../enums/template-enum";
+import { TemplateEnum } from "../../../enums/template-enum";
 import { FileTemplateCreator } from "../code-organization-layer/file-template-creator";
 import { FolderStructureCreator } from "../code-organization-layer/folder-structure-creator";
 

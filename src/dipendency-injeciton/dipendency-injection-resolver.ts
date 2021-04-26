@@ -1,10 +1,10 @@
-import { CodeFileCreator, CodeFileCreatorConcrete } from "../classes/code-creation-layer/code-file-creator";
-import { DirectoryChecker, DirectoryCheckerConcrete } from "../classes/code-creation-layer/directory-checker";
-import { DirectoryCreator, DirectoryCreatorConcrete } from "../classes/code-creation-layer/directory-creator";
-import { TemplateCreator, TemplateCreatorConcrete } from "../classes/code-creation-layer/template-creator";
-import { FileTemplateCreator, FileTemplateCreatorConrete } from "../classes/code-organization-layer/file-template-creator";
-import { FolderStructureCreator, FolderStructureCreatorConcrete } from "../classes/code-organization-layer/folder-structure-creator";
-import { CleanArchitectureCodeGenerator, CleanArchitectureCodeGeneratorConcrete } from "../classes/tree-creator-layer/clean-architecture-code-generator";
+import { CodeFileCreator, CodeFileCreatorConcrete } from "../features/code-generation/code-creation-layer/code-file-creator";
+import { DirectoryChecker, DirectoryCheckerConcrete } from "../features/code-generation/code-creation-layer/directory-checker";
+import { DirectoryCreator, DirectoryCreatorConcrete } from "../features/code-generation/code-creation-layer/directory-creator";
+import { TemplateCreator, TemplateCreatorConcrete } from "../features/code-generation/code-creation-layer/template-creator";
+import { FileTemplateCreator, FileTemplateCreatorConrete } from "../features/code-generation/code-organization-layer/file-template-creator";
+import { FolderStructureCreator, FolderStructureCreatorConcrete } from "../features/code-generation/code-organization-layer/folder-structure-creator";
+import { CleanArchitectureCodeGenerator, CleanArchitectureCodeGeneratorConcrete } from "../features/code-generation/tree-creator-layer/clean-architecture-code-generator";
 import { CommandsHandler, NewFileDispatcher } from "../commands/commands-handler";
 
 export class DipendencyInjectionResolver {
