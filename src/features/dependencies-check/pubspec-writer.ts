@@ -1,18 +1,20 @@
-import { TextDecoder, TextEncoder } from "util";
+import { TextEncoder } from "util";
 import { Uri, workspace } from "vscode";
-import { PubspecGetterConcrete } from "./pusbpec-getter";
+import { PubspecReader } from "./pubspec-reader";
+import { PubpsecPathGetter } from "./pusbpec-getter";
 
 export interface PubspecWriter {
     writePubspec(): Promise<void>
 }
 
 export class PubspecWriterConcrete implements PubspecWriter {
+    constructor(private pubGetter: PubpsecPathGetter, private pubReader: PubspecReader) { }
+
     async writePubspec() {
         if (workspace.workspaceFolders && workspace.workspaceFolders.length > 0) {
-            const getter = new PubspecGetterConcrete(); //TODO DI!!!!
-            const path = getter.getPubspecPath();
-            const arrayBuffer = await this.insertRowBeforeDevDependencies(path);
-            
+            const path = this.pubGetter.getPubspecPath();
+            const arrayBuffer = await this.insertRowBeforeDevDependencies();
+
             await workspace.fs.writeFile(
                 Uri.file(path),
                 arrayBuffer
@@ -21,9 +23,8 @@ export class PubspecWriterConcrete implements PubspecWriter {
         throw Error("NO environment!!");
     }
 
-    private async insertRowBeforeDevDependencies(pubspecPath: string): Promise<Uint8Array> {
-        const arrayBuffer: Uint8Array = await workspace.fs.readFile(Uri.file(pubspecPath));
-        let decodedString = new TextDecoder().decode(arrayBuffer);
+    private async insertRowBeforeDevDependencies(): Promise<Uint8Array> {
+        let decodedString = await this.pubReader.readPubspec();
 
         decodedString = decodedString.split("dev_dependencies:")
             .reduce((prev, current) => {
