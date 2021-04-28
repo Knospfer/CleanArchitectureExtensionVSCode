@@ -27,8 +27,8 @@ export class PubspecWriterConcrete implements PubspecWriter {
         let decodedString = await this.pubReader.readPubspec();
 
         const concatDependencies = depencencies.reduce((prev, current) => {
-            if (!!prev) { return current; }
-            return `${prev}\n  ${current}\n`;
+            if (!!prev) { return `${prev}:\n  ${current}:\n`; }
+            return `${current}:\n`;
         }, "");
 
         decodedString = decodedString.split("dev_dependencies:")

@@ -15,7 +15,7 @@ export class DependencyCheckerConcrete implements DependencyChecker {
     async checkForDependencies(): Promise<void> {
         if (await this.checkForMissingDependencies()
             && await this.showUpdateMessage()) {
-            this.pubWriter.writePubspec();
+            this.pubWriter.writePubspec(...this.missingDependencies);
         }
         return;
     }
