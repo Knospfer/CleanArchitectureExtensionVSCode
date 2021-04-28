@@ -3,12 +3,17 @@
 import * as vscode from 'vscode';
 import { NewFileDispatcher } from './commands/commands-handler';
 import { DipendencyInjectionResolver } from './dipendency-injeciton/dipendency-injection-resolver';
+import { DependencyChecker } from './features/dependencies-check/dependency-layer/dependency-checker';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
 
 	const commandsHandler: NewFileDispatcher = DipendencyInjectionResolver.generateNewFileDispatcherSingleton();
+	const dependencyChecker: DependencyChecker = DipendencyInjectionResolver.generateDependencyCheckerSingleton();
+
+	await dependencyChecker.checkForDependencies();
+
 	let disposable = vscode.commands.registerCommand('cleanarchitectureflutter.createsnippet', commandsHandler.newFile);
 
 	context.subscriptions.push(disposable);

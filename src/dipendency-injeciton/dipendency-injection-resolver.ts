@@ -6,10 +6,14 @@ import { FileTemplateCreator, FileTemplateCreatorConrete } from "../features/cod
 import { FolderStructureCreator, FolderStructureCreatorConcrete } from "../features/code-generation/code-organization-layer/folder-structure-creator";
 import { CleanArchitectureCodeGenerator, CleanArchitectureCodeGeneratorConcrete } from "../features/code-generation/tree-creator-layer/clean-architecture-code-generator";
 import { CommandsHandler, NewFileDispatcher } from "../commands/commands-handler";
+import { DependencyChecker, DependencyCheckerConcrete } from "../features/dependencies-check/dependency-layer/dependency-checker";
+import { PubspecGetterConcrete } from "../features/dependencies-check/pubspec-layer/pusbpec-getter";
+import { PubspecReader, PubspecReaderConcrete } from "../features/dependencies-check/pubspec-layer/pubspec-reader";
+import { PubspecWriter, PubspecWriterConcrete } from "../features/dependencies-check/pubspec-layer/pubspec-writer";
 
 export class DipendencyInjectionResolver {
-    private constructor(){}
-    static generateNewFileDispatcherSingleton() : NewFileDispatcher {
+    private constructor() { }
+    static generateNewFileDispatcherSingleton(): NewFileDispatcher {
         const codeFileCreator: CodeFileCreator = new CodeFileCreatorConcrete();
         const directoryChecker: DirectoryChecker = new DirectoryCheckerConcrete();
         const directoryCreator: DirectoryCreator = new DirectoryCreatorConcrete();
@@ -20,7 +24,17 @@ export class DipendencyInjectionResolver {
 
         const cleanArchitectureCodeGenerator: CleanArchitectureCodeGenerator = new CleanArchitectureCodeGeneratorConcrete(folderStructureCreator, fileTemplateCreator);
 
-        const commandsHandler: NewFileDispatcher = new CommandsHandler(cleanArchitectureCodeGenerator); 
+        const commandsHandler: NewFileDispatcher = new CommandsHandler(cleanArchitectureCodeGenerator);
         return commandsHandler;
+    }
+
+    static generateDependencyCheckerSingleton(): DependencyChecker {
+        const pubGetter = new PubspecGetterConcrete();
+        const pubReader: PubspecReader = new PubspecReaderConcrete(pubGetter);
+        const pubWriter: PubspecWriter = new PubspecWriterConcrete(pubGetter, pubReader);
+
+        const dependencyChecker: DependencyChecker = new DependencyCheckerConcrete(pubReader, pubWriter);
+
+        return dependencyChecker;
     }
 }
