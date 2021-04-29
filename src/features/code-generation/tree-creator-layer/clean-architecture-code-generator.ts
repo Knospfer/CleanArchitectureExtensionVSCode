@@ -3,14 +3,15 @@ import { FileTemplateCreator } from "../code-organization-layer/file-template-cr
 import { FolderStructureCreator } from "../code-organization-layer/folder-structure-creator";
 
 export interface CleanArchitectureCodeGenerator {
-    generateStrucureCode(args: { fileName: string, directory: string }): Promise<void>
+    generateNewFeature(args: { fileName: string, directory: string }): Promise<void>
+    generateExistingFeatureExpansion(args: { fileName: string, directory: string }): Promise<void>
 }
 
 export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitectureCodeGenerator {
     constructor(private folderStructureCreator: FolderStructureCreator, private fileTemplateCreator: FileTemplateCreator) {
     }
 
-    async generateStrucureCode(args: { fileName: string, directory: string }): Promise<void> {
+    async generateNewFeature(args: { fileName: string, directory: string }): Promise<void> {
         const { fileName, directory } = args;
         await Promise.all([
             this.generateFileCode(TemplateEnum.imports, fileName, true, directory, "features", fileName, "imports"),
@@ -21,6 +22,20 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
             this.generateFileCode(TemplateEnum.blocBloc, fileName, true, directory, "features", fileName, "presentation", "bloc", fileName, "bloc"),
             this.generateFileCode(TemplateEnum.blocEvent, fileName, true, directory, "features", fileName, "presentation", "bloc", fileName, "event"),
             this.generateFileCode(TemplateEnum.blocState, fileName, true, directory, "features", fileName, "presentation", "bloc", fileName, "state")
+        ]);
+    }
+
+    async generateExistingFeatureExpansion(args: { fileName: string; directory: string; }): Promise<void> {
+        const { fileName, directory } = args;
+        await Promise.all([
+            this.generateFileCode(TemplateEnum.imports, fileName, true, directory,  fileName, "imports"),
+            this.generateFileCode(TemplateEnum.remoteDataSource, fileName, true, directory,  fileName, "data", "data_source", "remote_data_source"),
+            this.generateFileCode(TemplateEnum.repositoryConcrete, fileName, false, directory,  fileName, "data", "repository_concrete"),
+            this.generateFileCode(TemplateEnum.repository, fileName, false, directory,  fileName, "domain", "repository"),
+            this.generateFileCode(TemplateEnum.useCase, fileName, false, directory,  fileName, "domain", "use_case"),
+            this.generateFileCode(TemplateEnum.blocBloc, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "bloc"),
+            this.generateFileCode(TemplateEnum.blocEvent, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "event"),
+            this.generateFileCode(TemplateEnum.blocState, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "state")
         ]);
     }
 

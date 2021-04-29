@@ -19,14 +19,14 @@ export function toSnakeCase(name: string): string {
 
 export async function promptForFileName(): Promise<string> {
     const alertOptions: InputBoxOptions = {
-        prompt: "File Name",
-        placeHolder: "my-file"
+        prompt: "Feature Name (should be an action)",
+        placeHolder: "fetch-some-data"
     };
     const fileName = await window.showInputBox(alertOptions);
     if (!!fileName) {
         return fileName;
     }
-    throw new Error("Error: file name is missing");
+    throw new Error("Error: feature name is missing");
 }
 
 export function toSnakeCaseFiltered(name: string, ...wordsToFilter: string[]): string {

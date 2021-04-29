@@ -14,7 +14,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	await dependencyChecker.checkForDependencies();
 
-	let disposable = vscode.commands.registerCommand('cleanarchitectureflutter.createsnippet', commandsHandler.newFile);
+	let disposable = vscode.commands.registerCommand('cleanarchitectureflutter.createsnippet', commandsHandler.newFeature);
 
 	context.subscriptions.push(disposable);
 }
