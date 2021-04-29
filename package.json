@@ -10,21 +10,29 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:cleanarchitectureflutter.createsnippet"
+		"onCommand:cleanarchitectureflutter.newfeature"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "cleanarchitectureflutter.createsnippet",
-				"title": "Clean Architecture: New Snippet"
+				"command": "cleanarchitectureflutter.newfeature",
+				"title": "Clean Architecture: New Feature"
+			},
+			{
+				"command": "cleanarchitectureflutter.expandfeature",
+				"title": "Clean Architecture: Expand Feature"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "cleanarchitectureflutter.createsnippet",
+					"command": "cleanarchitectureflutter.newfeature",
 					"title": "New Snippet"
+				},
+				{
+					"command": "cleanarchitectureflutter.expandfeature",
+					"title": "Clean Architecture: Expand Feature"
 				}
 			]
 		}

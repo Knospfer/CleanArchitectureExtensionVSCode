@@ -10,7 +10,14 @@ export class CommandsHandler implements NewFileDispatcher {
     constructor(private cleanArchitectureCodeGenerator: CleanArchitectureCodeGenerator) { }
 
     //in this way it will not loose this reference (arrow function doesn't have this)
-    newFeature = async (uri: Uri) => {
+    newFeature = async (uri: Uri) =>
+        await this.handleMethodCalling(uri, this.cleanArchitectureCodeGenerator.generateNewFeature);
+
+    expandFeature = async (uri: Uri) =>
+        await this.handleMethodCalling(uri, this.cleanArchitectureCodeGenerator.generateExistingFeatureExpansion);
+
+
+    async handleMethodCalling(uri: Uri, method: (args: { directory: string, fileName: string }) => Promise<void>) {
         try {
             const fileName = await promptForFileName();
 
@@ -22,7 +29,7 @@ export class CommandsHandler implements NewFileDispatcher {
             showCatchedErrorMessage(error);
             throw error;
         }
-    };
+    }
 }
 
 
