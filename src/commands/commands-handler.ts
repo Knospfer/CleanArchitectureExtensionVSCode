@@ -4,6 +4,7 @@ import { CleanArchitectureCodeGenerator } from "../features/code-generation/tree
 
 export interface NewFileDispatcher {
     newFeature(uri: Uri): void;
+    expandFeature(uri: Uri): void;
 }
 
 export class CommandsHandler implements NewFileDispatcher {

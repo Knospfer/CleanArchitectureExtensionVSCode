@@ -15,7 +15,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	await dependencyChecker.checkForDependencies();
 
 	let newFeat = vscode.commands.registerCommand('cleanarchitectureflutter.newfeature', commandsHandler.newFeature);
-	let expandFeat = vscode.commands.registerCommand('cleanarchitectureflutter.expandfeature', commandsHandler.newFeature);
+	let expandFeat = vscode.commands.registerCommand('cleanarchitectureflutter.expandfeature', commandsHandler.expandFeature);
 
 	context.subscriptions.push(newFeat, expandFeat);
 }
