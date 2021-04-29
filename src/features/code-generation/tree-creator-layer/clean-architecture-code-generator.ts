@@ -28,14 +28,14 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
     async generateExistingFeatureExpansion(args: { fileName: string; directory: string; }): Promise<void> {
         const { fileName, directory } = args;
         await Promise.all([
-            this.generateFileCode(TemplateEnum.imports, fileName, true, directory,  fileName, "imports"),
-            this.generateFileCode(TemplateEnum.remoteDataSource, fileName, true, directory,  fileName, "data", "data_source", "remote_data_source"),
-            this.generateFileCode(TemplateEnum.repositoryConcrete, fileName, false, directory,  fileName, "data", "repository_concrete"),
-            this.generateFileCode(TemplateEnum.repository, fileName, false, directory,  fileName, "domain", "repository"),
-            this.generateFileCode(TemplateEnum.useCase, fileName, false, directory,  fileName, "domain", "use_case"),
-            this.generateFileCode(TemplateEnum.blocBloc, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "bloc"),
-            this.generateFileCode(TemplateEnum.blocEvent, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "event"),
-            this.generateFileCode(TemplateEnum.blocState, fileName, true, directory,  fileName, "presentation", "bloc", fileName, "state")
+            this.generateFileCode(TemplateEnum.imports, fileName, true, directory, "imports"),
+            this.generateFileCode(TemplateEnum.remoteDataSource, fileName, true, directory, "data", "data_source", "remote_data_source"),
+            this.generateFileCode(TemplateEnum.repositoryConcrete, fileName, false, directory, "data", "repository_concrete"),
+            this.generateFileCode(TemplateEnum.repository, fileName, false, directory, "domain", "repository"),
+            this.generateFileCode(TemplateEnum.useCase, fileName, false, directory, "domain", "use_case"),
+            this.generateFileCode(TemplateEnum.blocBloc, fileName, true, directory, "presentation", "bloc", fileName, "bloc"),
+            this.generateFileCode(TemplateEnum.blocEvent, fileName, true, directory, "presentation", "bloc", fileName, "event"),
+            this.generateFileCode(TemplateEnum.blocState, fileName, true, directory, "presentation", "bloc", fileName, "state")
         ]);
     }
 

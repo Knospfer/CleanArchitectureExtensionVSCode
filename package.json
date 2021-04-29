@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:cleanarchitectureflutter.newfeature"
+		"onCommand:cleanarchitectureflutter.newfeature",
+		"onCommand:cleanarchitectureflutter.expandfeature"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -28,7 +29,7 @@
 			"explorer/context": [
 				{
 					"command": "cleanarchitectureflutter.newfeature",
-					"title": "New Snippet"
+					"title": "Clean Architecture: New Feature"
 				},
 				{
 					"command": "cleanarchitectureflutter.expandfeature",
