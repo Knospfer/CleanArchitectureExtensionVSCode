@@ -1,6 +1,5 @@
 import { toPascalCase, toSnakeCaseFiltered } from "../../utils/utils";
 
-
 export function remoteDataSourceTemplate(fileName: string) {
   const snakeCaseFileName = toSnakeCaseFiltered(fileName, "remote", "data", "source");
   const pascalCaseFileName = toPascalCase(fileName);

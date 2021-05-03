@@ -1,4 +1,11 @@
 import { TemplateEnum } from "../../../enums/template-enum";
+import { coreUseCase } from "../../../templates/core_templates/core-use-case";
+import { coreImports } from "../../../templates/core_templates/core_imports";
+import { entity } from "../../../templates/core_templates/entity";
+import { exception } from "../../../templates/core_templates/exception";
+import { failure } from "../../../templates/core_templates/failure";
+import { model } from "../../../templates/core_templates/model";
+import { sharedImports } from "../../../templates/core_templates/shared-imports";
 import { blocBloc } from "../../../templates/feature_templates/bloc-bloc";
 import { blocEvent } from "../../../templates/feature_templates/bloc-event";
 import { blocState } from "../../../templates/feature_templates/bloc-state";
@@ -26,6 +33,16 @@ export class TemplateCreatorConcrete implements TemplateCreator {
             case TemplateEnum.blocEvent: return blocEvent(fileName);
             case TemplateEnum.blocState: return blocState(fileName);
             case TemplateEnum.imports: return imports(fileName);
+
+            case TemplateEnum.coreImports: return coreImports();
+            case TemplateEnum.entity: return entity();
+            case TemplateEnum.exception: return exception();
+            case TemplateEnum.failure: return failure();
+            case TemplateEnum.model: return model();
+            case TemplateEnum.coreUseCase: return coreUseCase();
+
+            case TemplateEnum.sharedImports: return sharedImports();
+
             default: throw Error("NO template found!");
         }
     }

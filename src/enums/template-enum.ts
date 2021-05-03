@@ -7,4 +7,11 @@ export enum TemplateEnum {
     blocEvent,
     blocState,
     imports,
+    coreImports,
+    entity,
+    exception,
+    failure,
+    model,
+    coreUseCase,
+    sharedImports
 }

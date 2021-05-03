@@ -5,7 +5,7 @@ import { DirectoryChecker } from "../code-creation-layer/directory-checker";
 import { TemplateCreator } from "../code-creation-layer/template-creator";
 
 export interface FileTemplateCreator {
-    createFileTemplate(args: { fileName: string, directory: string, suffix: string, template: TemplateEnum }): Promise<void>
+    createFileTemplate(args: { fileName: string, directory: string, suffix: string, template: TemplateEnum, hasFileNameSuffix: boolean }): Promise<void>
 }
 
 export class FileTemplateCreatorConrete implements FileTemplateCreator {
@@ -14,10 +14,13 @@ export class FileTemplateCreatorConrete implements FileTemplateCreator {
         private templateCreator: TemplateCreator,
         private directoryChecker: DirectoryChecker) { }
 
-    async createFileTemplate(args: { fileName: string, directory: string, suffix: string, template: TemplateEnum }): Promise<void> {
-        const { fileName, directory, suffix, template } = args;
+    async createFileTemplate(args: { fileName: string, directory: string, suffix: string, template: TemplateEnum, hasFileNameSuffix: boolean }): Promise<void> {
+        const { fileName, directory, suffix, template, hasFileNameSuffix } = args;
 
-        const snakeCasefileName = `${toSnakeCase(fileName)}_${suffix}`;
+        let snakeCasefileName = toSnakeCase(fileName);
+        if (hasFileNameSuffix) {
+            snakeCasefileName = `${snakeCasefileName}_${suffix}`;
+        }
         const finalPath = `${directory}/${snakeCasefileName}.dart`;
 
         if (this.directoryChecker.checkDirectoryExistence(finalPath)) {
