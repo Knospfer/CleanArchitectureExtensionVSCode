@@ -5,7 +5,7 @@ import { TemplateCreator, TemplateCreatorConcrete } from "../features/code-gener
 import { FileTemplateCreator, FileTemplateCreatorConrete } from "../features/code-generation/code-organization-layer/file-template-creator";
 import { FolderStructureCreator, FolderStructureCreatorConcrete } from "../features/code-generation/code-organization-layer/folder-structure-creator";
 import { CleanArchitectureCodeGenerator, CleanArchitectureCodeGeneratorConcrete } from "../features/code-generation/tree-creator-layer/clean-architecture-code-generator";
-import { CommandsHandler, NewFileDispatcher } from "../commands/commands-handler";
+import { CommandsHandler, CommandsHandlerConcrete, NewFileDispatcher } from "../commands/commands-handler";
 import { DependencyChecker, DependencyCheckerConcrete } from "../features/dependencies-check/dependency-layer/dependency-checker";
 import { PubspecGetterConcrete } from "../features/dependencies-check/pubspec-layer/pusbpec-getter";
 import { PubspecReader, PubspecReaderConcrete } from "../features/dependencies-check/pubspec-layer/pubspec-reader";
@@ -13,7 +13,7 @@ import { PubspecWriter, PubspecWriterConcrete } from "../features/dependencies-c
 
 export class DipendencyInjectionResolver {
     private constructor() { }
-    static generateNewFileDispatcherSingleton(): NewFileDispatcher {
+    static generateCommandsHandlerSingleton(): CommandsHandler {
         const codeFileCreator: CodeFileCreator = new CodeFileCreatorConcrete();
         const directoryChecker: DirectoryChecker = new DirectoryCheckerConcrete();
         const directoryCreator: DirectoryCreator = new DirectoryCreatorConcrete();
@@ -24,7 +24,7 @@ export class DipendencyInjectionResolver {
 
         const cleanArchitectureCodeGenerator: CleanArchitectureCodeGenerator = new CleanArchitectureCodeGeneratorConcrete(folderStructureCreator, fileTemplateCreator);
 
-        const commandsHandler: NewFileDispatcher = new CommandsHandler(cleanArchitectureCodeGenerator);
+        const commandsHandler: CommandsHandler = new CommandsHandlerConcrete(cleanArchitectureCodeGenerator);
         return commandsHandler;
     }
 

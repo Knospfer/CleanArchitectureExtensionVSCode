@@ -5,6 +5,7 @@ import { FolderStructureCreator } from "../code-organization-layer/folder-struct
 export interface CleanArchitectureCodeGenerator {
     generateNewFeature(args: { fileName: string, directory: string }): Promise<void>
     generateExistingFeatureExpansion(args: { fileName: string, directory: string }): Promise<void>
+    generateBasicStructure(directory: string) : Promise<void>
 }
 
 export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitectureCodeGenerator {
@@ -39,6 +40,23 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
         ]);
     }
 
+    async generateBasicStructure(directory: string) : Promise<void> {
+        await Promise.all([
+            //tutte le interfacce base
+            this.generateEmptyFolder(directory,"_core","constants"),
+            this.generateEmptyFolder(directory,"_core","interceptors"),
+            this.generateEmptyFolder(directory,"_core","modules"),
+            this.generateEmptyFolder(directory,"_core","routes"),
+
+            this.generateEmptyFolder(directory,"_shared","entities"),
+            this.generateEmptyFolder(directory,"_shared","features"),
+            this.generateEmptyFolder(directory,"_shared","models"),
+            this.generateEmptyFolder(directory,"_shared","utils"),
+            this.generateEmptyFolder(directory,"_shared","widgets"),
+            
+        ]);
+    } 
+
     private async generateFileCode(template: TemplateEnum, fileName: string, skipSuffix: boolean = false, ...directories: string[]) {
         const suffix = directories[directories.length - 1];
         const directoryPath = await this.folderStructureCreator.generateFolderStructure(skipSuffix, ...directories);
@@ -49,5 +67,9 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
             suffix: suffix,
             template: template
         });
+    }
+
+    private async generateEmptyFolder(...directories: string[]){
+        return await this.folderStructureCreator.generateFolderStructure(false, ...directories);
     }
 }
