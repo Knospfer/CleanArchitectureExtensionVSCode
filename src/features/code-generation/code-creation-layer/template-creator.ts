@@ -1,13 +1,12 @@
 import { TemplateEnum } from "../../../enums/template-enum";
-import { blocBloc } from "../../../templates/bloc-bloc";
-import { blocEvent } from "../../../templates/bloc-event";
-import { blocState } from "../../../templates/bloc-state";
-import { imports } from "../../../templates/imports_template";
-import { remoteDataSourceTemplate } from "../../../templates/remote-data-source";
-import { repository } from "../../../templates/repository";
-import { repositoryConcrete } from "../../../templates/repository-concrete";
-import { useCase } from "../../../templates/use-case";
-import { toPascalCase, toSnakeCase } from "../../../utils/utils";
+import { blocBloc } from "../../../templates/feature_templates/bloc-bloc";
+import { blocEvent } from "../../../templates/feature_templates/bloc-event";
+import { blocState } from "../../../templates/feature_templates/bloc-state";
+import { imports } from "../../../templates/feature_templates/imports_template";
+import { remoteDataSourceTemplate } from "../../../templates/feature_templates/remote-data-source";
+import { repository } from "../../../templates/feature_templates/repository";
+import { repositoryConcrete } from "../../../templates/feature_templates/repository-concrete";
+import { useCase } from "../../../templates/feature_templates/use-case";
 
 export interface TemplateCreator {
     generateTemplateCode(args: { fileName: string, template: TemplateEnum }): string

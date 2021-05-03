@@ -1,4 +1,4 @@
-import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../../utils/utils";
 
 export function blocEvent(fileName: string) {
   const snakeCaseFileName = toSnakeCaseFiltered(fileName, "bloc", "state", "event", "imports");

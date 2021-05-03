@@ -1,4 +1,4 @@
-import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../../utils/utils";
 
 export function blocState(fileName: string) {
   const snakeCaseFileName = toSnakeCaseFiltered(fileName, "bloc", "state", "imports");

@@ -1,4 +1,4 @@
-import { toSnakeCaseFiltered } from "../utils/utils";
+import { toSnakeCaseFiltered } from "../../utils/utils";
 
 export function imports(fileName: string) {
     const snakeCaseFileName = toSnakeCaseFiltered(fileName, "imports");

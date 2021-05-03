@@ -1,4 +1,4 @@
-import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../utils/utils";
+import { toPascalCaseFiltered, toSnakeCaseFiltered } from "../../utils/utils";
 
 export function useCase(fileName: string) {
   const pascalCaseFileName = toPascalCaseFiltered(fileName, "use", "case", "imports");
