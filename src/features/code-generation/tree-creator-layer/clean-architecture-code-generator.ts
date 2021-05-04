@@ -48,6 +48,7 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
             this.generateFileCode({ template: TemplateEnum.failure, fileName: "failure", skipDirectorySuffix: false, hasFileNameSuffix: false }, directory, "_core", "basic_interfaces"),
             this.generateFileCode({ template: TemplateEnum.model, fileName: "model", skipDirectorySuffix: false, hasFileNameSuffix: false }, directory, "_core", "basic_interfaces"),
             this.generateFileCode({ template: TemplateEnum.coreUseCase, fileName: "use_case", skipDirectorySuffix: false, hasFileNameSuffix: false }, directory, "_core", "basic_interfaces"),
+            this.generateFileCode({ template: TemplateEnum.basicBlocStates, fileName: "bloc_states", skipDirectorySuffix: false, hasFileNameSuffix: false }, directory, "_core", "basic_interfaces"),
             this.generateFileCode({ template: TemplateEnum.sharedImports, fileName: "shared_imports", skipDirectorySuffix: false, hasFileNameSuffix: false }, directory, "_shared"),
 
             this.generateEmptyFolder(directory, "_core", "constants"),

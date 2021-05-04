@@ -11,19 +11,19 @@ export function blocBloc(fileName: string) {
 class ${pascalCaseFileName}Bloc extends Bloc<${pascalCaseFileName}Event, ${pascalCaseFileName}State> {
   final ${pascalCaseFileName}UseCase ${camelCaseFilename}UseCase;
     
-  ${pascalCaseFileName}Bloc(this.${camelCaseFilename}UseCase) : super(${pascalCaseFileName}Initial());
+  ${pascalCaseFileName}Bloc(this.${camelCaseFilename}UseCase) : super(${pascalCaseFileName}InitialState());
     
   @override
   Stream<${pascalCaseFileName}State> mapEventToState(
     ${pascalCaseFileName}BaseEvent event,
   ) async* {
     if (event is ${pascalCaseFileName}Event) {
-      yield ${pascalCaseFileName}Loading();
+      yield ${pascalCaseFileName}LoadingState();
       final either = await ${camelCaseFilename}UseCase(event.data);
       yield* either.fold((failure) async* {
-        yield ${pascalCaseFileName}Error();
+        yield ${pascalCaseFileName}ErrorState(failure.errorMessage);
       }, (_) async* {
-        yield ${pascalCaseFileName}Loaded();
+        yield ${pascalCaseFileName}LoadedState();
       });
     }
   }

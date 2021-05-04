@@ -1,4 +1,5 @@
 import { TemplateEnum } from "../../../enums/template-enum";
+import { basicBlocStates } from "../../../templates/core_templates/bloc-states";
 import { coreUseCase } from "../../../templates/core_templates/core-use-case";
 import { coreImports } from "../../../templates/core_templates/core_imports";
 import { entity } from "../../../templates/core_templates/entity";
@@ -40,6 +41,7 @@ export class TemplateCreatorConcrete implements TemplateCreator {
             case TemplateEnum.failure: return failure();
             case TemplateEnum.model: return model();
             case TemplateEnum.coreUseCase: return coreUseCase();
+            case TemplateEnum.basicBlocStates: return basicBlocStates();
 
             case TemplateEnum.sharedImports: return sharedImports();
 

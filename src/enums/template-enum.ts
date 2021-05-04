@@ -13,5 +13,6 @@ export enum TemplateEnum {
     failure,
     model,
     coreUseCase,
-    sharedImports
+    sharedImports,
+    basicBlocStates,
 }
