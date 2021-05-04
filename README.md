@@ -1,70 +1,24 @@
-# cleanarchitectureflutter README
+# Clean Architecture Flutter
 
-This is the README for your extension "cleanarchitectureflutter". After writing up a brief description, we recommend including the following sections.
+This VSCode extension creates the boilerplate code for implementig my version of the Reso Coder clean architecture proposal for Flutter projects.
 
-## Features
+You can check the original version through this tutorial:
+https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Folder Structure
 
-For example if there is an image subfolder under your extension project workspace:
+The folder structure is the folowing:
+* <b>/core:</b> everithing on which every feature depends (es: basic interfaces, modules, interceptors..)
+* <b>/shared:</b> something used in two or more features (es: shared widgets, shared features like user retrieving..)
+* <b>/features:</b> every feature in the project goes here
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Commands
+* <b>Generate Core:</b> generate the boilerplate for the core and shared feature. Every feature depends on the core folder
+* <b>New Feature:</b> generate the boilerplate code for a new feature. 
+* <b>Expand Feature:</b> add to an existing feature the boilerplate code for a new functionality (es: for a feature are needed more api calls)
 
-## Requirements
+## How to use the commands
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+* For <b>Generate Code</b> and <b>New Feature</b>: select lib folder
+* For <b>Expand Feature:</b> select the feature you want to expand
