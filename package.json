@@ -1,4 +1,8 @@
 {
+	"publisher": "knospfer",
+	"repository": {
+		"url": "https://github.com/Knospfer/CleanArchitectureExtensionVSCode"
+	},
 	"name": "cleanarchitectureflutter",
 	"displayName": "CleanArchitectureFlutter",
 	"description": "Use this extension to generate the boilerplate code for the clean architecture implementation in flutter",
