@@ -1,18 +1,21 @@
-import { toPascalCase, toSnakeCaseFiltered } from "../../utils/utils";
+import { toCamelCaseFiltered, toPascalCaseFiltered, toSnakeCaseFiltered } from "../../utils/utils";
 
 export function remoteDataSourceTemplate(fileName: string) {
   const snakeCaseFileName = toSnakeCaseFiltered(fileName, "remote", "data", "source");
-  const pascalCaseFileName = toPascalCase(fileName);
-  return `part of '../../${snakeCaseFileName}_imports.dart';
+  const pascalCaseFileName = toPascalCaseFiltered(fileName, "remote", "data", "source");
+  const camelCaseFileName = toCamelCaseFiltered(fileName, "remote", "data", "source");
+  return `part of '../../../${snakeCaseFileName}_imports.dart';
   
-abstract class ${pascalCaseFileName} {
-   //  TODO DECLARE METHOD
+abstract class ${pascalCaseFileName}RemoteDataSource {
+  Future<Model> ${camelCaseFileName}();
 }
   
-@LazySingleton(as: ${pascalCaseFileName})
-class ${pascalCaseFileName}Concrete implements ${pascalCaseFileName} {
-  const ${pascalCaseFileName}Concrete();
+@LazySingleton(as: ${pascalCaseFileName}RemoteDataSource)
+class ${pascalCaseFileName}RemoteDataSourceConcrete implements ${pascalCaseFileName}RemoteDataSource {
+  const ${pascalCaseFileName}RemoteDataSourceConcrete();
   
-  //  TODO IMPLEMENT METHOD
+  Future<Model> ${camelCaseFileName}(){
+    throw UnimplementedError();
+  }
 }`;
 }

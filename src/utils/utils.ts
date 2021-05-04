@@ -17,6 +17,20 @@ export function toSnakeCase(name: string): string {
     return name.toLowerCase().replace(/[_-\s]/g, "_");
 }
 
+export function toCamelCaseFiltered(name: string, ...wordsToFilter: string[]): string {
+    const wordArrayCapitalized = name
+        .split(/[_-\s]/g)
+        .filter((w) => !wordsToFilter.find(f => w === f))
+        .map((w, index) => {
+            if (index === 0) {
+                return w.toLowerCase();
+            }
+            w.toLowerCase();
+            return `${w[0].toUpperCase()}${w.slice(1)}`;
+        });
+    return wordArrayCapitalized.reduce((previousWord, currentWord) => previousWord + currentWord, "");
+}
+
 export async function promptForFileName(): Promise<string> {
     const alertOptions: InputBoxOptions = {
         prompt: "Feature Name (should be an action)",
