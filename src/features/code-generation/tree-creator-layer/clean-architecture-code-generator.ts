@@ -29,7 +29,7 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
     async generateExistingFeatureExpansion(args: { fileName: string; directory: string; }): Promise<void> {
         const { fileName, directory } = args;
         await Promise.all([
-            this.generateFileCode({ template: TemplateEnum.imports, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "imports"),
+            this.generateFileCode({ template: TemplateEnum.imports, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "imports"),
             this.generateFileCode({ template: TemplateEnum.remoteDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "data", "data_source", "remote_data_source"),
             this.generateFileCode({ template: TemplateEnum.repositoryConcrete, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "data", "repository_concrete"),
             this.generateFileCode({ template: TemplateEnum.repository, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "domain", "repository"),
