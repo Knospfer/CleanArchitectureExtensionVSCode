@@ -14,6 +14,7 @@ class ${pascalCaseFileName}RepositoryConcrete implements ${pascalCaseFileName}Re
     
   @override
   Future<Either<Failure, void>> ${camelCaseFilename}(dynamic data) async {
+    //TODO implement method
     throw UnimplementedError();
   }
 }`;

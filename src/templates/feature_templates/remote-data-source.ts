@@ -15,6 +15,7 @@ class ${pascalCaseFileName}RemoteDataSourceConcrete implements ${pascalCaseFileN
   const ${pascalCaseFileName}RemoteDataSourceConcrete();
   @override
   Future<Model> ${camelCaseFileName}(){
+    //TODO implement method
     throw UnimplementedError();
   }
 }`;

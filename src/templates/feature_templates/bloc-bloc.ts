@@ -19,6 +19,7 @@ class ${pascalCaseFileName}Bloc extends Bloc<${pascalCaseFileName}Event, ${pasca
   ) async* {
     if (event is ${pascalCaseFileName}Event) {
       yield ${pascalCaseFileName}LoadingState();
+      //TODO adjust type
       final either = await ${camelCaseFilename}UseCase(event.data as ${pascalCaseFileName}Params);
       yield* either.fold((failure) async* {
         yield ${pascalCaseFileName}ErrorState(failure.errorMessage);
