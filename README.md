@@ -14,11 +14,11 @@ The folder structure is the folowing:
 
 
 ## Commands
-* <b>Generate Core:</b> generate the boilerplate for the core and shared feature. Every feature depends on the core folder
 * <b>New Feature:</b> generate the boilerplate code for a new feature. 
 * <b>Expand Feature:</b> add to an existing feature the boilerplate code for a new functionality (es: for a feature are needed more api calls)
+* <b>New Store:</b> generate the boilerplate for the store handling,using sembast database
 
 ## How to use the commands
 
-* For <b>Generate Code</b> and <b>New Feature</b>: select lib folder
+* For <b>New Store</b> and <b>New Feature</b>: select lib folder
 * For <b>Expand Feature:</b> select the feature you want to expand
