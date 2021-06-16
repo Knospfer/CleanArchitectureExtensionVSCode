@@ -5,6 +5,7 @@ import { FolderStructureCreator } from "../code-organization-layer/folder-struct
 export interface CleanArchitectureCodeGenerator {
     generateNewFeature(args: { fileName: string, directory: string }): Promise<void>
     generateExistingFeatureExpansion(args: { fileName: string, directory: string }): Promise<void>
+    generateStore(args: { fileName: string, directory: string }): Promise<void>;
     generateBasicStructure(directory: string): Promise<void>
 }
 
@@ -32,12 +33,27 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
         await Promise.all([
             this.generateFileCode({ template: TemplateEnum.imports, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "imports"),
             this.generateFileCode({ template: TemplateEnum.remoteDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "data", "data_source", "remote_data_source"),
+            this.generateFileCode({ template: TemplateEnum.localDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "data", "data_source", "local_data_source"),
             this.generateFileCode({ template: TemplateEnum.repositoryConcrete, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "data", "repository_concrete"),
             this.generateFileCode({ template: TemplateEnum.repository, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "domain", "repository"),
             this.generateFileCode({ template: TemplateEnum.useCase, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "domain", "use_case"),
             this.generateFileCode({ template: TemplateEnum.blocBloc, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "presentation", "bloc", fileName, "bloc"),
             this.generateFileCode({ template: TemplateEnum.blocEvent, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "presentation", "bloc", fileName, "event"),
             this.generateFileCode({ template: TemplateEnum.blocState, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "presentation", "bloc", fileName, "state")
+        ]);
+    }
+
+    async generateStore(args: { fileName: string; directory: string; }): Promise<void> {
+        const { fileName, directory } = args;
+        await Promise.all([
+            this.generateFileCode({ template: TemplateEnum.storeImports, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "imports"),
+            this.generateFileCode({ template: TemplateEnum.storeLocalDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "data", "data_source", "local_data_source"),
+            this.generateFileCode({ template: TemplateEnum.storeRepositoryConcrete, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "data", "repository_concrete"),
+            this.generateFileCode({ template: TemplateEnum.storeRepository, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "domain", "repository"),
+            this.generateFileCode({ template: TemplateEnum.storeUseCase, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "domain", "use_case"),
+            this.generateFileCode({ template: TemplateEnum.storeBloc, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "presentation", "bloc", fileName, "bloc"),
+            this.generateFileCode({ template: TemplateEnum.storeEvent, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "presentation", "bloc", fileName, "event"),
+            this.generateFileCode({ template: TemplateEnum.storeState, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "_shared", "stores", fileName, "presentation", "bloc", fileName, "state")
         ]);
     }
 

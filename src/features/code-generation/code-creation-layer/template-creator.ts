@@ -16,6 +16,14 @@ import { remoteDataSourceTemplate } from "../../../templates/feature_templates/r
 import { repository } from "../../../templates/feature_templates/repository";
 import { repositoryConcrete } from "../../../templates/feature_templates/repository-concrete";
 import { useCase } from "../../../templates/feature_templates/use-case";
+import { storeBloc } from "../../../templates/store_templates/bloc-bloc";
+import { storeEvent } from "../../../templates/store_templates/bloc-event";
+import { storeState } from "../../../templates/store_templates/bloc-state";
+import { storeImports } from "../../../templates/store_templates/imports_template";
+import { storeLocalDataSourceTemplate } from "../../../templates/store_templates/local-data-source";
+import { storeRepository } from "../../../templates/store_templates/repository";
+import { storeRepositoryConcrete } from "../../../templates/store_templates/repository-concrete";
+import { storeUseCase } from "../../../templates/store_templates/use-case";
 
 export interface TemplateCreator {
     generateTemplateCode(args: { fileName: string, template: TemplateEnum }): string
@@ -37,6 +45,15 @@ export class TemplateCreatorConcrete implements TemplateCreator {
             case TemplateEnum.blocState: return blocState(fileName);
             case TemplateEnum.imports: return imports(fileName);
 
+            case TemplateEnum.storeBloc: return storeBloc(fileName);
+            case TemplateEnum.storeEvent: return storeEvent(fileName);
+            case TemplateEnum.storeState: return storeState(fileName);
+            case TemplateEnum.storeImports: return storeImports(fileName);
+            case TemplateEnum.storeLocalDataSource: return storeLocalDataSourceTemplate(fileName);
+            case TemplateEnum.storeRepositoryConcrete: return storeRepositoryConcrete(fileName);
+            case TemplateEnum.storeRepository: return storeRepository(fileName);
+            case TemplateEnum.storeUseCase: return storeUseCase(fileName);
+
             case TemplateEnum.coreImports: return coreImports();
             case TemplateEnum.entity: return entity();
             case TemplateEnum.exception: return exception();
@@ -51,3 +68,4 @@ export class TemplateCreatorConcrete implements TemplateCreator {
         }
     }
 }
+

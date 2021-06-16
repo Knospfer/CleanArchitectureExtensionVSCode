@@ -15,5 +15,13 @@ export enum TemplateEnum {
     coreUseCase,
     sharedImports,
     basicBlocStates,
-    localDataSource
+    localDataSource,
+    storeBloc,
+    storeEvent,
+    storeState,
+    storeImports,
+    storeLocalDataSource,
+    storeRepositoryConcrete,
+    storeRepository,
+    storeUseCase
 }

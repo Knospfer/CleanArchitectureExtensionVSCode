@@ -15,10 +15,10 @@ export async function activate(context: vscode.ExtensionContext) {
 	await dependencyChecker.checkForDependencies();
 
 	const newFeat = vscode.commands.registerCommand('cleanarchitectureflutter.newfeature', commandsHandler.newFeature);
-	const generateCore = vscode.commands.registerCommand('cleanarchitectureflutter.generatebasicstructure', commandsHandler.generateBasicStructure);
 	const expandFeat = vscode.commands.registerCommand('cleanarchitectureflutter.expandfeature', commandsHandler.expandFeature);
+	const newStore = vscode.commands.registerCommand('cleanarchitectureflutter.newstore', commandsHandler.newStore);
 
-	context.subscriptions.push(newFeat, generateCore, expandFeat);
+	context.subscriptions.push(newFeat, expandFeat, newStore);
 }
 
 // this method is called when your extension is deactivated

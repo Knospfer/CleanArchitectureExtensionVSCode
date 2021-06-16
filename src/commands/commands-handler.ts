@@ -7,11 +7,18 @@ export interface NewFileDispatcher {
     expandFeature(uri: Uri): void;
 }
 
+export interface StoreDispatcher {
+    newStore(uri: Uri): void;
+}
+
 export interface CoreDispatcher {
     generateBasicStructure(uri: Uri): void;
 }
 
-export abstract class CommandsHandler implements NewFileDispatcher, CoreDispatcher {
+export abstract class CommandsHandler implements NewFileDispatcher, CoreDispatcher, StoreDispatcher {
+    newStore(uri: Uri): void {
+        throw new Error("Method not implemented.");
+    }
     generateBasicStructure(uri: Uri): void {
         throw new Error("Method not implemented.");
     }
@@ -57,6 +64,20 @@ export class CommandsHandlerConcrete extends CommandsHandler {
             const directory: string = uri.fsPath;
 
             await this.cleanArchitectureCodeGenerator.generateExistingFeatureExpansion({ fileName, directory });
+
+            window.showInformationMessage(`Code generated uccessfully!`);
+        } catch (error) {
+            showCatchedErrorMessage(error);
+            throw error;
+        }
+    };
+
+    newStore = async (uri: Uri) => {
+        try {
+            const fileName = await promptForFileName();
+            const directory: string = uri.fsPath;
+
+            await this.cleanArchitectureCodeGenerator.generateStore({ fileName, directory });
 
             window.showInformationMessage(`Code generated uccessfully!`);
         } catch (error) {

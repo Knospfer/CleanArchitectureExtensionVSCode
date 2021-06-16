@@ -30,8 +30,8 @@
 				"title": "Clean Architecture: Expand Feature"
 			},
 			{
-				"command": "cleanarchitectureflutter.generatebasicstructure",
-				"title": "Clean Architecture: Generate Core"
+				"command": "cleanarchitectureflutter.newstore",
+				"title": "Clean Architecture: New Store"
 			}
 		],
 		"menus": {
@@ -45,8 +45,8 @@
 					"title": "Clean Architecture: Expand Feature"
 				},
 				{
-					"command": "cleanarchitectureflutter.generatebasicstructure",
-					"title": "Clean Architecture: Generate Core"
+					"command": "cleanarchitectureflutter.newstore",
+					"title": "Clean Architecture: New Store"
 				}
 			]
 		}

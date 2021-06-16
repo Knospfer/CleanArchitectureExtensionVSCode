@@ -1,14 +1,14 @@
 import { toSnakeCaseFiltered } from "../../utils/utils";
 
-export function imports(fileName: string) {
+export function storeImports(fileName: string) {
     const snakeCaseFileName = toSnakeCaseFiltered(fileName, "imports");
-    return `import 'package:dartz/dartz.dart' show Either, Right, Left;
+    return `import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sembast/sembast.dart';
+    
+import '/_core/core_imports.dart';
 
-import '../../_core/core_imports.dart';
-
-part "./data/data_source/remote_data_source/${snakeCaseFileName}_remote_data_source.dart";
 part "./data/data_source/local_data_source/${snakeCaseFileName}_local_data_source.dart";
 part "./data/repository_concrete/${snakeCaseFileName}_repository_concrete.dart";
 part "./domain/repository/${snakeCaseFileName}_repository.dart";
