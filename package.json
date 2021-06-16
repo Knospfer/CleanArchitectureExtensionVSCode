@@ -16,7 +16,7 @@
 	"activationEvents": [
 		"onCommand:cleanarchitectureflutter.newfeature",
 		"onCommand:cleanarchitectureflutter.expandfeature",
-		"onCommand:cleanarchitectureflutter.generatebasicstructure"
+		"onCommand:cleanarchitectureflutter.newstore"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
