@@ -9,6 +9,6 @@ export function repository(fileName: string) {
   return `part of "../../${snakeCaseFileName}_imports.dart";
 
 abstract class ${pascalCaseFileName}Repository {
-  Future<Either<Failure, Entity>> ${camelCaseFilename}(data);
+  Future<Either<Failure, void>> ${camelCaseFilename}(dynamic data);
 } `;
 }

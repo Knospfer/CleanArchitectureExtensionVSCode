@@ -13,7 +13,7 @@ class ${pascalCaseFileName}RepositoryConcrete implements ${pascalCaseFileName}Re
   ${pascalCaseFileName}RepositoryConcrete(this.dataSource);
     
   @override
-  Future<Either<Failure, Entity>> ${camelCaseFilename}(data) async {
+  Future<Either<Failure, void>> ${camelCaseFilename}(dynamic data) async {
     throw UnimplementedError();
   }
 }`;

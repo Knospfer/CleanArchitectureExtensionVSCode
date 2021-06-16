@@ -13,7 +13,7 @@ abstract class ${pascalCaseFileName}RemoteDataSource {
 @LazySingleton(as: ${pascalCaseFileName}RemoteDataSource)
 class ${pascalCaseFileName}RemoteDataSourceConcrete implements ${pascalCaseFileName}RemoteDataSource {
   const ${pascalCaseFileName}RemoteDataSourceConcrete();
-  
+  @override
   Future<Model> ${camelCaseFileName}(){
     throw UnimplementedError();
   }

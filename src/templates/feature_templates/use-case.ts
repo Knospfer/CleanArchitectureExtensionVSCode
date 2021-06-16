@@ -8,20 +8,20 @@ export function useCase(fileName: string) {
   return `part of "../../${snakeCaseFileName}_imports.dart";
     
 class ${pascalCaseFileName}Params {
-  final data;
+  final dynamic data;
     
   ${pascalCaseFileName}Params(this.data);
 }
     
 @lazySingleton
-class ${pascalCaseFileName}UseCase implements UseCase<Entity, ${pascalCaseFileName}Params> {
+class ${pascalCaseFileName}UseCase implements UseCase<void, ${pascalCaseFileName}Params> {
   final ${pascalCaseFileName}Repository repository;
     
   ${pascalCaseFileName}UseCase(this.repository);
     
   @override
-  Future<Either<Failure, Entity>> call(${pascalCaseFileName}Params params) async {
-    return await repository.${camelCaseFilename}(params.data);
+  Future<Either<Failure, void>> call(${pascalCaseFileName}Params params) async {
+    return repository.${camelCaseFilename}(params.data);
   }
 }`;
 }

@@ -9,7 +9,7 @@ abstract class ${pascalCaseFileName}BaseEvent {
 } 
 
 class ${pascalCaseFileName}Event extends ${pascalCaseFileName}BaseEvent {
-  final data;
+  final dynamic data;
   const ${pascalCaseFileName}Event(this.data);
 }`;
 }
