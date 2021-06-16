@@ -74,7 +74,10 @@ export class CommandsHandlerConcrete extends CommandsHandler {
 
     newStore = async (uri: Uri) => {
         try {
-            const fileName = await promptForFileName();
+            const fileName = await promptForFileName({
+                prompt: "Es. user-store",
+                placeHolder: "Store name"
+            });
             const directory: string = uri.fsPath;
 
             await this.cleanArchitectureCodeGenerator.generateStore({ fileName, directory });
