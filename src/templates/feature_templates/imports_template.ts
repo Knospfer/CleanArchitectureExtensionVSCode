@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import '../../_core/core_imports.dart';
 
 part "./data/data_source/remote_data_source/${snakeCaseFileName}_remote_data_source.dart";
+part "./data/data_source/local_data_source/${snakeCaseFileName}_local_data_source.dart";
 part "./data/repository_concrete/${snakeCaseFileName}_repository_concrete.dart";
 part "./domain/repository/${snakeCaseFileName}_repository.dart";
 part './domain/use_case/${snakeCaseFileName}_use_case.dart';

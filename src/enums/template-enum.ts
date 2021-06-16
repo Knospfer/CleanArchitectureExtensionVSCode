@@ -15,4 +15,5 @@ export enum TemplateEnum {
     coreUseCase,
     sharedImports,
     basicBlocStates,
+    localDataSource
 }

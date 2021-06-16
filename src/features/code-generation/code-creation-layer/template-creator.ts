@@ -11,6 +11,7 @@ import { blocBloc } from "../../../templates/feature_templates/bloc-bloc";
 import { blocEvent } from "../../../templates/feature_templates/bloc-event";
 import { blocState } from "../../../templates/feature_templates/bloc-state";
 import { imports } from "../../../templates/feature_templates/imports_template";
+import { localDataSourceTemplate } from "../../../templates/feature_templates/local-data-source";
 import { remoteDataSourceTemplate } from "../../../templates/feature_templates/remote-data-source";
 import { repository } from "../../../templates/feature_templates/repository";
 import { repositoryConcrete } from "../../../templates/feature_templates/repository-concrete";
@@ -27,6 +28,7 @@ export class TemplateCreatorConcrete implements TemplateCreator {
         const { fileName, template } = args;
         switch (template) {
             case TemplateEnum.remoteDataSource: return remoteDataSourceTemplate(fileName);
+            case TemplateEnum.localDataSource: return localDataSourceTemplate(fileName);
             case TemplateEnum.repositoryConcrete: return repositoryConcrete(fileName);
             case TemplateEnum.repository: return repository(fileName);
             case TemplateEnum.useCase: return useCase(fileName);

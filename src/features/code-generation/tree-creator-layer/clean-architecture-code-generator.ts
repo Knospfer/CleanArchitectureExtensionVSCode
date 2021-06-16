@@ -17,6 +17,7 @@ export class CleanArchitectureCodeGeneratorConcrete implements CleanArchitecture
         await Promise.all([
             this.generateFileCode({ template: TemplateEnum.imports, fileName: fileName, skipDirectorySuffix: true, hasFileNameSuffix: true }, directory, "features", fileName, "imports"),
             this.generateFileCode({ template: TemplateEnum.remoteDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "features", fileName, "data", "data_source", "remote_data_source"),
+            this.generateFileCode({ template: TemplateEnum.localDataSource, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "features", fileName, "data", "data_source", "local_data_source"),
             this.generateFileCode({ template: TemplateEnum.repositoryConcrete, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "features", fileName, "data", "repository_concrete"),
             this.generateFileCode({ template: TemplateEnum.repository, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "features", fileName, "domain", "repository"),
             this.generateFileCode({ template: TemplateEnum.useCase, fileName: fileName, skipDirectorySuffix: false, hasFileNameSuffix: true }, directory, "features", fileName, "domain", "use_case"),
