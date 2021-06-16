@@ -7,7 +7,7 @@ export interface DependencyChecker {
 }
 
 export class DependencyCheckerConcrete implements DependencyChecker {
-    private depenenciesToCheck = ["flutter_bloc", "injectable", "dartz", "get_it"];
+    private depenenciesToCheck = ["flutter_bloc", "injectable", "dartz", "get_it", "sembast"];
     private missingDependencies: string[] = [];
 
     constructor(private pubReader: PubspecReader, private pubWriter: PubspecWriter) { }
