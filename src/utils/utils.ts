@@ -31,11 +31,10 @@ export function toCamelCaseFiltered(name: string, ...wordsToFilter: string[]): s
     return wordArrayCapitalized.reduce((previousWord, currentWord) => previousWord + currentWord, "");
 }
 
-export async function promptForFileName(): Promise<string> {
-    const alertOptions: InputBoxOptions = {
-        prompt: "Feature Name (should be an action)",
-        placeHolder: "fetch-some-data"
-    };
+export async function promptForFileName(alertOptions: InputBoxOptions = {
+    prompt: "Feature Name (should be an action)",
+    placeHolder: "fetch-some-data"
+}): Promise<string> {
     const fileName = await window.showInputBox(alertOptions);
     if (!!fileName) {
         return fileName;
