@@ -6,7 +6,7 @@
 	"name": "cleanarchitectureflutter",
 	"displayName": "CleanArchitectureFlutter",
 	"description": "Use this extension to generate the boilerplate code for the clean architecture implementation in flutter",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.55.0"
 	},
