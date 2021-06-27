@@ -22,3 +22,10 @@ The folder structure is the folowing:
 
 * For <b>New Store</b> and <b>New Feature</b>: select lib folder
 * For <b>Expand Feature:</b> select the feature you want to expand
+
+
+## How to build and install locally
+
+- build: ```vsce package```
+
+- install: ```code --install-extension /path/to/vsix```
