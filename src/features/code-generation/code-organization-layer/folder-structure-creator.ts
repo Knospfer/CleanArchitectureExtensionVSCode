@@ -19,7 +19,7 @@ export class FolderStructureCreatorConcrete implements FolderStructureCreator {
             if (!!prev) {
                 return `${prev}/` + toSnakeCase(current);
             }
-            return toSnakeCase(current);
+            return current;
         }, "");
 
         if (!this.directoryChecker.checkDirectoryExistence(directoryPath)) {
